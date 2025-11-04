@@ -42,7 +42,7 @@ export default function Navbar() {
           Niveles
         </Link>
         <Link
-          href="/agendar"
+          href="/agendar-reunion"
           className="block py-1 md:py-0 hover:text-orange-400 transition-colors duration-300"
           onClick={() => setIsOpen(false)}
         >
