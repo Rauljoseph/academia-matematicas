@@ -1,9 +1,41 @@
 'use client';
 //TODO darle comportamiento a este formulario y conectar con api
+import {useState} from "react";
+import {API_URL} from "@/api/api";
+
 export default function ContactForm() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Formulario enviado'); // conectar EmailJS o un endpoint
+    setLoading(true);
+
+    const res = await fetch(`${API_URL}/contact`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        message,
+      }),
+    });
+
+    setLoading(false);
+
+    if (res.ok) {
+      setSuccessMessage('Se ha enviado su consulta');
+      setName("");
+      setEmail("");
+      setMessage("");
+    } else {
+      setErrorMessage('No se ha enviado su consulta');
+    }
   };
 
   return (
@@ -20,6 +52,9 @@ export default function ContactForm() {
           type="text"
           placeholder="Tu nombre"
           className="w-full border border-gray-300 rounded-md p-3 focus:ring-2 focus:ring-[#d68a2e] focus:outline-none"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
         />
       </div>
 
@@ -32,6 +67,9 @@ export default function ContactForm() {
           type="email"
           placeholder="tu@email.com"
           className="w-full border border-gray-300 rounded-md p-3 focus:ring-2 focus:ring-[#d68a2e] focus:outline-none"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
         />
       </div>
 
@@ -44,6 +82,9 @@ export default function ContactForm() {
           rows={4}
           placeholder="Escribe tu mensaje aquí..."
           className="w-full border border-gray-300 rounded-md p-3 focus:ring-2 focus:ring-[#d68a2e] focus:outline-none resize-none"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          required
         />
       </div>
 
@@ -53,6 +94,14 @@ export default function ContactForm() {
       >
         Enviar mensaje
       </button>
+
+      {successMessage && (
+        <p className="mt-2 text-sm text-gray-500">{successMessage}</p>
+      )}
+
+      {errorMessage && (
+        <p className="mt-2 text-sm text-red-500">{errorMessage}</p>
+      )}
     </form>
   );
 }
