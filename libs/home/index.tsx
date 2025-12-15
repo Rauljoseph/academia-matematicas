@@ -1,3 +1,4 @@
+"use client";
 import MethodologyCard from '@/libs/home/components/cards';
 import {
   HERO_SECTION,
@@ -8,6 +9,8 @@ import {
   METHODOLOGY_HEADER,
 } from '@/libs/home/constants';
 import ReactMarkdown from 'react-markdown';
+import { useRouter } from "next/navigation";
+
 
 function MethologySection() {
   return (
@@ -53,6 +56,7 @@ function LevelSection() {
 }
 
 function HeroSection() {
+  const router = useRouter();
   return (
     <section className="mb-24">
       <h1 className="text-4xl md:text-5xl font-bold text-[#1a1a1a] mb-4">{HERO_SECTION.title}</h1>
@@ -61,7 +65,9 @@ function HeroSection() {
         <ReactMarkdown>{HERO_SECTION.description}</ReactMarkdown>
       </div>
 
-      <button className="bg-[#d68a2e] hover:bg-[#b87322] text-white font-semibold py-3 px-6 rounded-md shadow-md transition duration-300">
+      <button   onClick={() => router.push("/agendar-reunion")}
+                className="bg-[#d68a2e] hover:bg-[#b87322] text-white font-semibold py-3 px-6 rounded-md shadow-md transition duration-300">
+
         {HERO_SECTION.buttonText}
       </button>
     </section>
