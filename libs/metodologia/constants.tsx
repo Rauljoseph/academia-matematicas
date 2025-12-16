@@ -1,17 +1,19 @@
 export const MATERIALS = [
   {
-    title: 'Guía de Aprendizaje Significativo',
-    description:
-      'Explicación de nuestro enfoque educativo y cómo aplicamos la comprensión profunda en lugar de la memorización.',
+    title: "Guía de estudio 1° Medio",
+    description: "Material introductorio con ejercicios básicos y teoría fundamental.",
+    fileUrl:
+      "https://www.utadeo.edu.co/sites/tadeo/files/node/publication/field_attached_file/pdf_matematicas_basicas_contenidos_0.pdf",
   },
   {
-    title: 'Uso de Herramientas Digitales',
-    description:
-      'Cómo integramos la tecnología y la inteligencia artificial para reforzar el aprendizaje matemático.',
+    title: "Preparación PAES Matemáticas",
+    description: "Ejercicios tipo PAES con explicaciones paso a paso.",
+    fileUrl:
+      "https://www.mineduc.cl/wp-content/uploads/sites/19/2023/09/PAES_Matematica.pdf",
   },
   {
-    title: 'Técnicas para Resolver Problemas',
-    description:
-      'Estrategias que utilizamos para enseñar razonamiento lógico y pensamiento crítico.',
+    title: "Material Avanzado (próximamente)",
+    description: "Contenido exclusivo para alumnos avanzados.",
+    fileUrl: undefined, // muestra el botón gris
   },
 ];
