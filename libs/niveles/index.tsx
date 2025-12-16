@@ -21,7 +21,6 @@ export default function Levels() {
     fetch("http://localhost:4000/ads")
       .then((res) => res.json())
       .then((data: Ad[]) => {
-        console.log("data",data);
         const activeAds = data.filter((ad) => ad.isActive);
 
         setAds(activeAds);
@@ -97,7 +96,6 @@ export default function Levels() {
             {selectedAd.fileUrl ? (
               <a
                 href={`http://localhost:4000${selectedAd.fileUrl}`}
-                // href={selectedAd.fileUrl}
                 download
                 className="inline-block bg-[#d68a2e] hover:bg-[#b87322] text-white font-semibold py-2 px-4 rounded-md shadow-md transition"
               >

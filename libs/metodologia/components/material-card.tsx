@@ -12,7 +12,7 @@ export default function MaterialCard({ title, description, fileUrl }: MaterialCa
 
       {fileUrl ? (
         <a
-          href={fileUrl}
+          href={`http://localhost:4000${fileUrl}`}
           download
           className="inline-block bg-[#d68a2e] hover:bg-[#b87322] text-white font-semibold py-2 px-4 rounded-md transition duration-300"
         >

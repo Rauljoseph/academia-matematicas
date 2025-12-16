@@ -1,7 +1,36 @@
+"use client"
 import { MATERIALS } from '@/libs/metodologia/constants';
 import MaterialCard from '@/libs/metodologia/components/material-card';
+import {useEffect, useState} from "react";
 
+type Materials = {
+  id: number,
+  title: string,
+  description: string,
+  fileUrl: string
+}
 export default function Methodology() {
+  const [materials, setMaterials] = useState<Materials[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/materials")
+      .then((res) => res.json())
+      .then((data: Materials[]) => {
+        setMaterials(data);
+
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="py-20 text-center text-gray-600">
+        Cargando programas...
+      </div>
+    );
+  }
+
   return (
     <section className="w-screen bg-[#fff8e9] py-20 px-6 md:px-16">
       <div className="max-w-6xl mx-auto text-center">
@@ -17,7 +46,7 @@ export default function Methodology() {
 
         {/* Grid con materiales */}
         <div className="grid gap-8 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-12">
-          {MATERIALS.map((mat, i) => (
+          {materials.map((mat, i) => (
             <MaterialCard key={i} {...mat} />
           ))}
         </div>
